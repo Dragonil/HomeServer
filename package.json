@@ -1,0 +1,27 @@
+{
+  "name": "homeserver",
+  "version": "1.0.0",
+  "description": "Webserver that host local websites and redirect to local services",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dragonil/HomeServer.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "HomeServer"
+  ],
+  "author": "Oliver Gorges (Dragonil)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dragonil/HomeServer/issues"
+  },
+  "homepage": "https://github.com/Dragonil/HomeServer#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
