@@ -1,0 +1,38 @@
+<!Doctype html>
+
+<html>
+    <header>
+        <style>
+            
+        </style>
+        <script>
+            let request = new XMLHttpRequest();
+    
+            window.onload = function(){
+                request.open('GET', '/print/info');
+                request.addEventListener("load", updateInk);        
+                request.send();
+            }
+            function updateInk(){
+                const data = JSON.parse(this.responseText);
+                let ink = data.printer-attributes-tag;
+                console.log(ink.marker-colors, ink.marker-levels);
+                c = document.getElementById("ink");
+                cc= c.getContext('2d');
+                cc.fillStyle='black';
+                cc.fillRect(0,0,c.width,c.height);
+            }
+        </script>
+    </header>
+    <body>
+        <h2>PDF Drucken</h2>
+            <form action="/print" method="post" enctype="multipart/form-data">
+                <input type="file" name="data" />
+                <input type="submit" name="upload" value="Upload" />
+            </form>
+
+        <h2>Tinte</h2>
+        <canvas id="ink" height="100" width="500"></canvas>
+
+    </body>
+</html>

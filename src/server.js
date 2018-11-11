@@ -1,21 +1,33 @@
-var app = require("express")();
+const express = require("express");
+const path = require("path");
+const printerServie = require("./www/service/Printer/endpoint");
+const config = require("config");
+const app = express();
+const port = config.port || 3000;
+
+app.use('/assets', express.static(__dirname + '/www/assets'));
+
+// Init Services
+printerServie.init(app);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+
 app.get('/octoprint', (req, res) =>{
-    res.redirect(301, "http://192.168.178.54");
+    res.redirect(301, "http://"+config.octoprint);
 })
 
 app.get('/piHole', (req, res) =>{
-    res.redirect(301, "http://192.168.178.63:8170/admin");
+    res.redirect(301, "http://"+config.pihole+"/admin");
 })
 
 app.get('/door', (req, res) =>{
-    res.redirect(301, "http://192.168.178.60:8170");
+    res.redirect(301, "http://"+config.door);
 })
 
-app.listen(80, () => {
-    console.log('Example app listening on port 80!');
+
+app.listen(port, () => {
+    console.log('Example app listening on port '+port+'!');
 });
